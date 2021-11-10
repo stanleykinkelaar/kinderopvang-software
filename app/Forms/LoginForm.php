@@ -12,9 +12,8 @@ class LoginForm extends Form
         $this
             ->add('email', Field::EMAIL, [
                 'rules' => 'required',
-                'label' => 'E-mail',
                 'attr' => [
-                    'class' => 'bg-white h-8 w-64',
+                    'class' => 'bg-gray-100 p-4 w-full h-12 placeholder-opacity-50 focus:shadow-outline',
                     'placeholder' => 'email@email.nl'
                 ],
             ])
@@ -22,7 +21,7 @@ class LoginForm extends Form
                 'rules' => 'required',
                 'label' => 'Wachtwoord',
                 'attr' => [
-                    'class' => 'bg-white h-8 w-64',
+                    'class' => 'bg-gray-100 p-4 w-full h-12 placeholder-opacity-50 focus:shadow-outline',
                     'placeholder' => 'Wachtwoord'
                 ],
             ])
