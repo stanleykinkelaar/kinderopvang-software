@@ -12,10 +12,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('group_system_user', function (Blueprint $table) {
+        Schema::create('children', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('system_user_id')->constrained();
-            $table->foreignId('group_id')->constrained();
+            $table->foreignId('guardian_id')->constrained();
+            $table->string('firstname');
+            $table->string('middlename')->nullable();
+            $table->string('lastname');
+            $table->date('birthdate');
             $table->timestamps();
         });
     }
@@ -27,11 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table('group_system_user', function (Blueprint $table) {
-            $table->dropForeign(['system_user_id']);
-            $table->dropForeign(['group_id']);
-        });
-
-        Schema::dropIfExists('group_system_user');
+        Schema::dropIfExists('children');
     }
 };

@@ -4,12 +4,12 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Company extends Resource
+class Child extends Resource
 {
     public static $group = 'System';
 
@@ -18,14 +18,14 @@ class Company extends Resource
      *
      * @var string
      */
-    public static string $model = \App\Models\Company::class;
+    public static $model = \App\Models\Child::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -33,37 +33,45 @@ class Company extends Resource
      * @var array
      */
     public static $search = [
-        'name',
+        'firstname', 'middlename', 'lastname',
     ];
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function fields(Request $request): array
+    public function fields(Request $request)
     {
         return [
-            Text::make('Name')
+            Text::make('Voornaam', 'firstname')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            HasMany::make('SystemUsers'),
+            Text::make('Middlename', 'middlename')
+                ->nullable()
+                ->sortable()
+                ->rules('max:255'),
 
-            HasMany::make('Groups'),
+            Text::make('Achternaam', 'lastname')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
-            HasMany::make('Guardians'),
+            Date::make('Geboortedatum', 'birthdate')
+                ->format('DD-MM-YYYY'),
+
+            BelongsTo::make('Guardian')
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function cards(Request $request): array
+    public function cards(Request $request)
     {
         return [];
     }
@@ -71,10 +79,10 @@ class Company extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function filters(Request $request): array
+    public function filters(Request $request)
     {
         return [];
     }
@@ -82,10 +90,10 @@ class Company extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function lenses(Request $request): array
+    public function lenses(Request $request)
     {
         return [];
     }
@@ -93,10 +101,10 @@ class Company extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param Request $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
-    public function actions(Request $request): array
+    public function actions(Request $request)
     {
         return [];
     }

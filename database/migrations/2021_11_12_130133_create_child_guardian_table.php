@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
+        Schema::create('child_guardian', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained();
-            $table->string('name');
+            $table->foreignId('guardian_id')->constrained();
+            $table->foreignId('child_id')->constrained();
             $table->timestamps();
         });
     }
@@ -28,10 +28,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function (Blueprint $table) {
-            $table->dropForeign(['company_id']);
+        Schema::table('child_guardian', function (Blueprint $table) {
+            $table->dropForeign(['guardian_id']);
+            $table->dropForeign(['child_id']);
         });
 
-        Schema::dropIfExists('groups');
+        Schema::dropIfExists('child_guardian');
     }
 };

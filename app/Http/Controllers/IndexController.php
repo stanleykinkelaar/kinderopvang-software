@@ -8,6 +8,11 @@ class IndexController extends Controller
 {
     public function index(): string
     {
-        return view('dashboard.index');
+        $user = auth()->user();
+        $groups = $user->groups;
+
+        return view('dashboard.index')
+            ->withUser($user)
+            ->withGroups($groups);
     }
 }

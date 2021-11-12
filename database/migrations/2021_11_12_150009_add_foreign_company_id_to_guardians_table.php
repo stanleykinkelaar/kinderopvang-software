@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,11 +12,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('company_id')->constrained();
-            $table->string('name');
-            $table->timestamps();
+        Schema::table('guardians', function (Blueprint $table) {
+            $table->foreignId('company_id')->after('name')->constrained();
         });
     }
 
@@ -28,10 +24,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function (Blueprint $table) {
+        Schema::table('guardians', function (Blueprint $table) {
             $table->dropForeign(['company_id']);
+            $table->dropColumn('company_id');
         });
-
-        Schema::dropIfExists('groups');
     }
 };
