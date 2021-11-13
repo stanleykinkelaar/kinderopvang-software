@@ -41,4 +41,6 @@ Route::middleware('auth:system_users')->name('dashboard.')->group(function () {
     Route::get('profiel', [ProfileController::class, 'index'])
         ->name('profile');
 
+    Route::post('profiel', [ProfileController::class, 'update']);
+
 });

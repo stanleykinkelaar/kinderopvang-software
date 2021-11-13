@@ -7,7 +7,7 @@
     <div class="flex h-screen">
         <div class="m-auto w-1/3">
 
-            <div class="bg-white p-32 rounded-xl shadow-md">
+            <div class="bg-gray-300 p-32 rounded-xl shadow-md">
                 @if(session()->has('error'))
                     <p>{{ session()->get('error') }}</p>
                 @endif
@@ -25,7 +25,7 @@
                     <div>
                         {!! form_label($form->password) !!}
                     </div>
-                    {!! form_widget($form->password)  !!}
+                    {!! form_widget($form->password) !!}
                 </div>
 
                 <div class="flex justify-end">

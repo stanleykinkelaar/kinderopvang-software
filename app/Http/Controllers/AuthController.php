@@ -4,12 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forms\LoginForm;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Contracts\Auth\Factory;
-use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Contracts\Auth\StatefulGuard;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilder;
 
