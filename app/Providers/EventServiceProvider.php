@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\SystemUserSetPasswordEmailEvent;
+use App\Listeners\SendSystemUserSetPasswordEmailListener;
+use App\Models\SystemUser;
+use App\Observers\SystemUserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+
+        SystemUserSetPasswordEmailEvent::class => [
+            SendSystemUserSetPasswordEmailListener::class,
+        ],
     ];
 
     /**
@@ -27,6 +35,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        SystemUser::observe(SystemUserObserver::class);
     }
 }

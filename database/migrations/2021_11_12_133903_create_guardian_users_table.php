@@ -21,6 +21,9 @@ return new class extends Migration {
             $table->string('zipcode');
             $table->string('housenumber');
             $table->string('email');
+            $table->string('password')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

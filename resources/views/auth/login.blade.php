@@ -7,7 +7,7 @@
     <div class="flex h-screen">
         <div class="m-auto w-1/3">
 
-            <div class="bg-gray-300 p-32 rounded-xl shadow-md">
+            <div class="bg-gray-100 p-32 rounded-xl shadow-md">
                 @if(session()->has('error'))
                     <p>{{ session()->get('error') }}</p>
                 @endif
@@ -33,6 +33,7 @@
                 </div>
 
                 {!! form_end($form, false) !!}
+
             </div>
 
         </div>

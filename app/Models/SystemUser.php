@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class SystemUser extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CanResetPassword, Notifiable;
 
     protected $fillable = [
         'firstname', 'lastname', 'email'

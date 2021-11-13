@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Forms\LoginForm;
+use App\Forms\SetPassword;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\SetPasswordRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Kris\LaravelFormBuilder\FormBuilder;
@@ -23,7 +25,7 @@ class AuthController extends Controller
             'method' => 'POST',
         ]);
 
-        return view('login')
+        return view('auth.login')
             ->with('form', $form);
     }
 
@@ -37,5 +39,21 @@ class AuthController extends Controller
 
         return redirect()->back()
             ->with('error', 'E-mail and/or password is wrong');
+    }
+
+    public function setPasswordView($token)
+    {
+        $form = $this->formBuilder->create(SetPassword::class, [
+            'method' => 'POST',
+            'url' => route('password.set.post', $token)
+        ]);
+
+        return view('auth.set-password')
+            ->withForm($form);
+    }
+
+    public function setPasswordPost(SetPasswordRequest $request)
+    {
+        dd($request->email, $request->token, $request->password);
     }
 }

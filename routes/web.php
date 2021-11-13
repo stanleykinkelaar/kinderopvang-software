@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Unauthenticated routes
  */
+
 Route::get('login', [AuthController::class, 'index'])
     ->name('login');
 
@@ -30,6 +31,14 @@ Route::get('logout', function () {
     return redirect()->route('login');
 });
 
+Route::name('password.')->prefix('password')->group(function () {
+
+    Route::get('set/{token}', [AuthController::class, 'setPasswordView'])->name('set');
+    Route::post('set/{token}', [AuthController::class, 'setPasswordPost'])->name('set.post');
+
+});
+
+
 /**
  * Auth group
  */
@@ -38,9 +47,11 @@ Route::middleware('auth:system_users')->name('dashboard.')->group(function () {
     Route::get('/', [IndexController::class, 'index'])
         ->name('index');
 
-    Route::get('profiel', [ProfileController::class, 'index'])
-        ->name('profile');
+    Route::prefix('profiel')->group(function () {
+        Route::get('/', [ProfileController::class, 'index'])
+            ->name('profile');
 
-    Route::post('profiel', [ProfileController::class, 'update']);
+        Route::post('/', [ProfileController::class, 'update']);
+    });
 
 });

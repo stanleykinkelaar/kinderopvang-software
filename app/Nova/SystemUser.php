@@ -65,11 +65,6 @@ class SystemUser extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
-
             BelongsTo::make('Company'),
 
             BelongsToMany::make('Groups'),
