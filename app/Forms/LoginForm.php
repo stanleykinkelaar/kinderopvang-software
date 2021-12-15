@@ -13,7 +13,7 @@ class LoginForm extends Form
             ->add('email', Field::EMAIL, [
                 'rules' => 'required',
                 'attr' => [
-                    'class' => 'bg-gray-100 p-4 w-full h-12 placeholder-opacity-50 focus:shadow-outline',
+                    'class' => 'bg-gray-200 p-4 w-full h-12 rounded focus:shadow-outline',
                     'placeholder' => 'email@email.nl'
                 ],
             ])

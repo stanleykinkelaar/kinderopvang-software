@@ -5,7 +5,9 @@
     <title>@yield('subtitle', 'subtitel') - @yield('title', config('app.name'))</title>
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
-<body class="h-screen w-screen">
+<body>
+
 @yield('content_base')
+
 </body>
 </html>

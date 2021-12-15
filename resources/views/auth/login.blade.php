@@ -4,7 +4,7 @@
 
 @section('content_base')
 
-    <div class="flex h-screen">
+    <div class="flex h-screen bg-blue-400">
         <div class="m-auto w-1/3">
 
             <div class="bg-gray-100 p-32 rounded-xl shadow-md">

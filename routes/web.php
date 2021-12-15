@@ -20,6 +20,12 @@ use Illuminate\Support\Facades\Route;
  * Unauthenticated routes
  */
 
+// todo: use in dashboard
+
+Route::get('dashy', function () {
+    return view('dashy');
+});
+
 Route::get('login', [AuthController::class, 'index'])
     ->name('login');
 
