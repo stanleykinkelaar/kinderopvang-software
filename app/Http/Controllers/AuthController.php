@@ -17,7 +17,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use never;
 
 class AuthController extends Controller
 {
@@ -58,7 +57,7 @@ class AuthController extends Controller
             ->with('error', 'E-mail and/or password is wrong');
     }
 
-    public function setPasswordView($token): ContractView|Factory|never|Application
+    public function setPasswordView($token)
     {
         if (!PasswordReset::where('token', $token)->first()) {
             return abort(403);
