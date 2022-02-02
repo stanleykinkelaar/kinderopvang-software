@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GuardianUser;
 use App\Models\SystemUser;
 use App\Models\User;
 
@@ -46,6 +47,10 @@ return [
         'system_users' => [
             'driver' => 'session',
             'provider' => 'system_users',
+        ],
+        'guardian_users' => [
+            'driver' => 'session',
+            'provider' => 'guardian_users',
         ]
     ],
 
@@ -75,6 +80,11 @@ return [
         'system_users' => [
             'driver' => 'eloquent',
             'model' => SystemUser::class,
+        ],
+
+        'guardian_users' => [
+            'driver' => 'eloquent',
+            'model' => GuardianUser::class,
         ],
     ],
 

@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <title>@yield('subtitle', 'subtitel') - @yield('title', config('app.name'))</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-</head>
-<body>
+@include('partials.head')
+<body class="bg-gray-50">
+
 
 @yield('content_base')
 
+
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

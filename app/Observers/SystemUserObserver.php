@@ -3,8 +3,12 @@
 namespace App\Observers;
 
 use App\Events\SystemUserSetPasswordEmailEvent;
+use App\Jobs\EmailQueueJob;
+use App\Mail\SetPasswordEmail;
 use App\Models\PasswordReset;
 use App\Models\SystemUser;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class SystemUserObserver
 {
@@ -23,12 +27,15 @@ class SystemUserObserver
      */
     public function created(SystemUser $systemUser)
     {
+        $token = $this->passwordReset->generateToken();
+        $email = $systemUser->email;
+
         $this->passwordReset->create([
-            'email' => $systemUser->email,
-            'token' => $this->passwordReset->generateToken(),
+            'email' => $email,
+            'token' => $token,
         ]);
 
-        event(new SystemUserSetPasswordEmailEvent($systemUser->email));
+        dispatch(new EmailQueueJob($email, $token));
     }
 
     /**

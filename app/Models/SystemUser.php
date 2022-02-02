@@ -30,4 +30,14 @@ class SystemUser extends Authenticatable
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
 }
